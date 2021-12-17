@@ -39,7 +39,7 @@ public:
 
 	void netReceivePosition(float newX, float newY);
 
-	void spawn(int id, int spawnX, int spawnY);
+	void spawn(int id);
 	void activateShield();
 	bool canBeShielded();
 	void destroy();

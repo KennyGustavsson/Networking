@@ -4,7 +4,7 @@
 class Particle
 {
 public:
-	Particle(vector2 pos, vector2 vel, int life, vector2* screenSize);
+	Particle(vector2 pos, vector2 vel, int life, vector2 screenSize);
 	void Update();
 	void Render();
 	bool isDead();
@@ -18,10 +18,9 @@ public:
 private:
 	vector2 _pos;
 	vector2 _vel;
-	vector2* _screenSize;
+	vector2 _screenSize;
 	float _baseSpeed = 100.0f;
 
 	int _endTime = 0;
-	SDL_Color _color;
 };
 

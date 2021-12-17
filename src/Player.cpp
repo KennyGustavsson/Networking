@@ -27,12 +27,10 @@ void Player::netReceivePosition(float newX, float newY)
 	errorY = newY - y;
 }
 
-void Player::spawn(int id, int spawnX, int spawnY)
+void Player::spawn(int id)
 {
 	this->id = id;
 	alive = true;
-	/*x = (float) spawnX;
-	y = (float) spawnY;*/
 
 	x = 400;
 	y = 500;

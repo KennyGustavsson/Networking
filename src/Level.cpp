@@ -46,14 +46,6 @@ void Level::draw()
 {
 	engSetColor(0xFFFFFFFF);
 
-	auto GetTile = [&](int x, int y)
-	{
-		if (x >= 0 && x < mapWidth && y >= 0 && y < mapHeight)
-			return map[y * mapWidth + x];
-		else
-			return L' ';
-	};
-
 	for (int x = -1; x < mapWidth; x++)
 	{
 		for (int y = -1; y < mapHeight; y++) 
@@ -153,14 +145,6 @@ vector2 Level::checkAgainstLevelCollision(vector2 currentPosition, vector2 poten
 	outPos.x = potentialPosition.x;
 	outPos.y = potentialPosition.y;
 
-	auto GetTile = [&](int x, int y)
-	{
-		if (x >= 0 && x < mapWidth && y >= 0 && y < mapHeight)
-			return map[y * mapWidth + x];
-		else
-			return L' ';
-	};
-
 	// Shitty AABB collision
 	for (int x = -1; x < mapWidth; x++)
 	{
@@ -182,8 +166,6 @@ vector2 Level::checkAgainstLevelCollision(vector2 currentPosition, vector2 poten
 				{
 					vector2 direction = potentialPosition - currentPosition;
 					direction = direction.Normalize();
-
-					engPrint("%f, %f", direction.x, direction.y);
 
 					// DOWN
 					if (direction.y > 0 && direction.x == 0 && potentialPosition.y + radius > CellY)
@@ -244,15 +226,6 @@ vector2 Level::checkAgainstLevelCollision(vector2 currentPosition, vector2 poten
 
 bool Level::checkAgainstLevelCollision(vector2 currentPosition, float radius)
 {
-	auto GetTile = [&](int x, int y)
-	{
-		if (x >= 0 && x < mapWidth && y >= 0 && y < mapHeight)
-			return map[y * mapWidth + x];
-		else
-			return L' ';
-	};
-
-	// Shitty AABB collision
 	for (int x = -1; x < mapWidth; x++)
 	{
 		for (int y = -1; y < mapHeight; y++)
@@ -263,7 +236,6 @@ bool Level::checkAgainstLevelCollision(vector2 currentPosition, float radius)
 			{
 				int CellX = x * CELL_SIZE;
 				int CellY = y * CELL_SIZE;
-
 
 				if (currentPosition.x - radius < CellX + CELL_SIZE &&
 					currentPosition.x + radius > CellX &&
@@ -278,4 +250,12 @@ bool Level::checkAgainstLevelCollision(vector2 currentPosition, float radius)
 	}
 
 	return false;
+}
+
+wchar_t Level::GetTile(int x, int y)
+{
+	if (x >= 0 && x < mapWidth && y >= 0 && y < mapHeight)
+		return map[y * mapWidth + x];
+	else
+		return L' ';
 }

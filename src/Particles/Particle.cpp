@@ -1,7 +1,7 @@
 #include "Particle.h"
 #include "Engine.h"
 
-Particle::Particle(vector2 pos, vector2 vel, int life, vector2* screenSize) : _pos(pos), _vel(vel)
+Particle::Particle(vector2 pos, vector2 vel, int life, vector2 screenSize) : _pos(pos), _vel(vel)
 {
 	_endTime = engElapsedTime() + life;
 	_screenSize = screenSize;
@@ -21,7 +21,8 @@ void Particle::Render()
 	if (isDead() || hide)
 		return;
 
-	// Render here
+	engFillRect((int)_pos.x - 1, (int)_pos.y - 1, 2, 2);
+	
 }
 
 bool Particle::isDead()

@@ -1,4 +1,4 @@
-﻿  Player.cpp
-E:\Skrivbord\FGNetworkingGameEmil-main\FGNetworkingGameEmil-main\src\Player.cpp(177,55): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-E:\Skrivbord\FGNetworkingGameEmil-main\FGNetworkingGameEmil-main\src\Player.cpp(177,17): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  TinyEngine.vcxproj -> E:\Skrivbord\FGNetworkingGameEmil-main\FGNetworkingGameEmil-main\bin\Game_Server.exe
+﻿  Level.cpp
+E:\Skrivbord\Networking\Networking\src\Level.cpp(72,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+E:\Skrivbord\Networking\Networking\src\Level.cpp(73,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  TinyEngine.vcxproj -> E:\Skrivbord\Networking\Networking\bin\Game_Server.exe

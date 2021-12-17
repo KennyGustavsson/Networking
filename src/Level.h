@@ -23,6 +23,9 @@ public:
 	std::wstring map;
 	int mapWidth;
 	int mapHeight;
+
+private:
+	wchar_t GetTile(int x, int y);
 };
 
 extern Level level;

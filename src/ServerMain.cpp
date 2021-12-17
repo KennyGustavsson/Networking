@@ -211,13 +211,11 @@ int WinMain(HINSTANCE, HINSTANCE, char*, int)
 
 					{
 						Player* player = &players[event.userId];
-						player->spawn(event.userId, rand() % 800, rand() % 600);
+						player->spawn(event.userId);
 
 						NetMessage msg;
 						msg.write<MessageType>(MessageType::PlayerSpawn);
 						msg.write<int>(event.userId);
-						msg.write<float>(player->x);
-						msg.write<float>(player->y);
 
 						serverBroadcast(msg);
 						msg.free();
@@ -288,12 +286,19 @@ int WinMain(HINSTANCE, HINSTANCE, char*, int)
 
 			if (laserTimer >= laserCooldown)
 			{
+				int x = (rand() % 3) - 1;
+				int y = (rand() % 3) - 1;
+				if (x == 0 && y == 0) y = 1;
+
 				NetMessage msg;
 				msg.write<MessageType>(MessageType::ActivateLaser);
+				msg.write<char>(x);
+				msg.write<char>(y);
+				msg.write<char>(laser.getDirection());
 				serverBroadcast(msg);
 				msg.free();
 
-				laser.fireLaser(vector2(0, 1));
+				laser.fireLaser(vector2(x, y));
 				laserTimer = 0.0f;
 			}
 

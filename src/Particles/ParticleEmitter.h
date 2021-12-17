@@ -7,13 +7,13 @@
 class FollowingParticleEmitter
 {
 public:
-	FollowingParticleEmitter(int maxParticles, vector2* Pos, vector2* Rot, vector2* screenSize);
-	FollowingParticleEmitter(int maxParticles, vector2* Pos, float spawnTime, float randomColor, vector2* screenSize);
+	FollowingParticleEmitter(int maxParticles, vector2* Pos, vector2* Rot, vector2 screenSize);
+	FollowingParticleEmitter(int maxParticles, vector2* Pos, float spawnTime, float randomColor, vector2 screenSize);
 	~FollowingParticleEmitter();
 
 	void Emitt();
 	void Update();
-	void Render(SDL_Renderer* renderer);
+	void Render();
 
 private:
 	float RandomSigned(float x)
@@ -28,15 +28,15 @@ private:
 	}
 
 	std::vector<Particle*> _particles;
-	vector2* _screenSize;
+	vector2 _screenSize;
 
 	vector2* _pos;
 	vector2* _rot;
 
 	int _maxParticle;
 
-	float _spawnTime = 0.001f;
-	float _timer = 0;
+	float _spawnTime = 0.02f;
+	float _timer = 0.0f;
 
 	bool _invertRot = true;
 	bool _useRot = true;
@@ -44,7 +44,7 @@ private:
 	vector2 _randomPos = { 0.2f, 0.2f };
 	vector2 _randomRot = { 0.4f, 0.4f };
 
-	float _lifeLength = 0.5f;
-	float _randomLifeLength = 4.0f;
+	float _lifeLength = 5.0f;
+	float _randomLifeLength = 0.0f;
 };
 

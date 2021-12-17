@@ -7,7 +7,7 @@
 /// <param name="maxParticles"></param>
 /// <param name="Pos"></param>
 /// <param name="Rot"></param>
-FollowingParticleEmitter::FollowingParticleEmitter(int maxParticles, vector2* Pos, vector2* Rot, vector2* screenSize)
+FollowingParticleEmitter::FollowingParticleEmitter(int maxParticles, vector2* Pos, vector2* Rot, vector2 screenSize)
 {
 	_pos = Pos;
 	_rot = Rot;
@@ -49,7 +49,7 @@ FollowingParticleEmitter::FollowingParticleEmitter(int maxParticles, vector2* Po
 	}
 }
 
-FollowingParticleEmitter::FollowingParticleEmitter(int maxParticles, vector2* Pos, float spawnTime, float randomColor, vector2* screenSize)
+FollowingParticleEmitter::FollowingParticleEmitter(int maxParticles, vector2* Pos, float spawnTime, float randomColor, vector2 screenSize)
 {
 	_pos = Pos;
 	_maxParticle = maxParticles;
@@ -82,8 +82,6 @@ FollowingParticleEmitter::~FollowingParticleEmitter()
 
 void FollowingParticleEmitter::Emitt()
 {
-	_timer += engDeltaTime();
-
 	for (int i = 0; i < _maxParticle; i++) {
 		if (_particles[i]->isDead()) {
 			if (_timer > _spawnTime || _spawnTime == 0.0f) {
@@ -125,6 +123,8 @@ void FollowingParticleEmitter::Emitt()
 					_particles[i]->SetLifeTime(life);
 					_particles[i]->hide = false;
 				}
+
+				return;
 			}
 		}
 	}
@@ -132,6 +132,8 @@ void FollowingParticleEmitter::Emitt()
 
 void FollowingParticleEmitter::Update()
 {
+	_timer += engDeltaTime();
+
 	for (int i = 0; i < _maxParticle; i++)
 	{
 		if (!_particles[i]->isDead())
@@ -139,7 +141,7 @@ void FollowingParticleEmitter::Update()
 	}
 }
 
-void FollowingParticleEmitter::Render(SDL_Renderer* renderer)
+void FollowingParticleEmitter::Render()
 {
 	for (int i = 0; i < _maxParticle; i++)
 	{

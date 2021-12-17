@@ -20,9 +20,7 @@ void handleMessage(NetMessage msg)
 		case MessageType::PlayerSpawn:
 		{
 			int id = msg.read<int>();
-			float x = msg.read<float>();
-			float y = msg.read<float>();
-			players[id].spawn(id, (int)x, (int)y);
+			players[id].spawn(id);
 			break;
 		}
 
@@ -114,7 +112,11 @@ void handleMessage(NetMessage msg)
 
 		case MessageType::ActivateLaser: 
 		{
-			laser.fireLaser(vector2(0, 1));
+			int x = msg.read<char>();
+			int y = msg.read<char>();
+			int dir = msg.read<char>();
+			laser.setDirection(dir);
+			laser.fireLaser(vector2(x, y));
 			break;
 		}
 	}
@@ -128,10 +130,7 @@ int WinMain(HINSTANCE, HINSTANCE, char*, int)
 	/*if (!clientConnect("10.20.2.178", 666))
 		return 1;*/
 
-	/*if (!clientConnect("127.0.0.1", 666))
-		return 1;*/
-
-	if (!clientConnect("81.232.90.203", 666))
+	if (!clientConnect("127.0.0.1", 666))
 		return 1;
 
 	while(engBeginFrame() && clientIsConnected())

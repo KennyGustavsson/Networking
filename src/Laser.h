@@ -2,6 +2,7 @@
 
 #include "Level.h"
 #include "Vector2.h"
+#include "Particles/ParticleEmitter.h"
 
 class Laser
 {
@@ -10,8 +11,12 @@ public:
 	void update();
 	void draw();
 	void fireLaser(vector2 direction);
+	int getDirection() const;
+	void setDirection(int dir);
 
 private:
+	FollowingParticleEmitter _emitter;
+
 	vector2 _position;
 	vector2 _laserEndPos;
 
@@ -25,6 +30,8 @@ private:
 
 	float _varmupTimer = 0.0f;
 	float _varmupTime = 2.0f;
+
+	int _direction = 1;
 
 	bool _fireLaser = false;
 	bool _varmup = false;
